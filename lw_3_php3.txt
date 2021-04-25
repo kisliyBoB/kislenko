@@ -1,0 +1,48 @@
+<?php
+  if(empty($_GET["text"])) //проверяем, не пустой ли вход
+    exit("Eror - empty input");
+  $text = $_GET["text"];
+
+  preg_match("/^[a-zA-Z][a-zA-Z0-9]+/", $text, $matches); //проверка на допустимые символы
+  $length = strlen($matches[0]); //вычисляем длину строки matches  
+  $different = strlen($text) - $length;  //разность длины входной строки и длины строки matches
+  if($different > 0)  //если строки не совпадают по длине, то ошибка
+    exit("Eror - char in " . $length . "position not english bet or digit");
+  
+  $allSymbol = array();  
+  //$repeat_symbol = array();  
+  $security = 0; $digits = 0; $uppercase = 0; $lowercase = 0; $bets = 0; $countRepeatSymbol = 0;
+
+  for($n = 0; $n < $length; $n++)
+  {
+    $char = $text[$n];
+    if (ctype_digit($char)) //символ - цифра
+      $digit++;
+    else //символ - буква
+    {
+      $bets++;
+      if(ctype_upper($char))
+        $uppercase++;
+      else
+        $lowercase++;   
+    }
+    //проверка на повторяющийся символ
+    if(in_array($char, $allSymbol))
+      $countRepeatSymbol += 2;
+    else
+      $allSymbol[] = $char;
+    
+  }      
+
+  $security += 4 * $length;
+  $security += 4 * $digit;
+  $security += 2 * ($length - $uppercase); 
+  $security += 2 * ($length - $lowercase);
+  if($bets == $length)
+    $security -= $length;
+  if($digit == $length)
+    $security -= $length;
+  $security -= $countRepeatSymbol;
+  echo("Security " . $security);       
+
+?>
