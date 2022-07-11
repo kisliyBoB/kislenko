@@ -1,0 +1,31 @@
+body {
+font-family: "Georgia", "Arial", sans-serif;
+margin: 4;
+padding: 0.8;
+}
+
+blockquote {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+#heading {
+    margin: 10;
+    padding: 2;
+color:aqua;
+height: 100px; 
+font-family: "Open Sans", "Arial", sans-serif;   
+}
+#h2 {
+color:aqua;
+height: 100px;  
+font-family: "Open Sans", "Arial", sans-serif;     
+}
+#h3 {
+height: 200px;   
+font-family: "Open Sans", "Arial", sans-serif;    
+}
+
+
